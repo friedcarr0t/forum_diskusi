@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jul 2025 pada 12.57
+-- Waktu pembuatan: 17 Jul 2025 pada 14.02
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -34,6 +34,13 @@ CREATE TABLE `diskusi` (
   `isi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `diskusi`
+--
+
+INSERT INTO `diskusi` (`id`, `nim`, `judul`, `isi`) VALUES
+(2, '2310511082', 'service backend', 'tes post data');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,13 @@ CREATE TABLE `komentar` (
   `isi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `komentar`
+--
+
+INSERT INTO `komentar` (`id`, `id_diskusi`, `nim`, `isi`) VALUES
+(1, 2, '2310511082', 'tesnya berhasil masuk tuh');
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +71,14 @@ CREATE TABLE `mahasiswa` (
   `nim` varchar(10) NOT NULL,
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`nim`, `nama`) VALUES
+('2310511000', 'Tes'),
+('2310511082', 'Musalim Ridho');
 
 --
 -- Indexes for dumped tables
@@ -91,13 +113,13 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT untuk tabel `diskusi`
 --
 ALTER TABLE `diskusi`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
