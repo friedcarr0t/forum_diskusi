@@ -44,8 +44,44 @@ const getDiskusiId = (req, res) => {
     )
 }
 
+const getMahasiswa = (req, res) => {
+    db.query(`select*from mahasiswa`, (err, results) => {
+        if (err) {
+            console.error('database error:', err);
+            return res.status(500).json({ error: err.message });
+        }
+        res.status(200).json(results);
+    });
+};
+
+const postMahasiswa = (req, res) => {
+    const { nim, nama } = req.body;
+
+    if (!nim || !nama) {
+        return res.status(400).json({ error: "nim dan nama wajib diisi" });
+    }
+
+    db.query(
+        `insert into mahasiswa (nim, nama) values (?, ?)`,
+        [nim, nama],
+        (err, result) => {
+            if (err) {
+                console.error('database error:', err);
+                if (err.code === 'ER_DUP_ENTRY') {
+                    return res.status(409).json({ error: "nim sudah terdaftar" });
+                }
+                return res.status(500).json({ error: err.message });
+            }
+            res.status(201).json({ message: "data mahasiswa berhasil disimpan" });
+        }
+    );
+};
+
+
 module.exports = {
     getDiskusi,
     postDiskusi,
-    getDiskusiId
+    getDiskusiId,
+    getMahasiswa,
+    postMahasiswa
 }
