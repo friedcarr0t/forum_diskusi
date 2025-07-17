@@ -26,8 +26,6 @@ const postDiskusi = (req, res) => {
     )
 }
 
-
-
 module.exports = {
     getDiskusi,
     postDiskusi
